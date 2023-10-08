@@ -1,0 +1,22 @@
+jib {
+    from {
+        image = "openjdk:8-jre-alpine"
+    }
+    to {
+        image = "registry.gitlab.com/genesis-pgw/gpgw-msaccount:${version}"
+        tags = ["latest"]
+    }
+    container {
+        entrypoint = ["/entrypoint.sh"]
+        ports = ["8001"]
+        environment = [
+            SPRING_OUTPUT_ANSI_ENABLED: "ALWAYS",
+            APP_SLEEP                 : "0"
+        ]
+        creationTime = "USE_CURRENT_TIMESTAMP"
+    }
+    extraDirectories {
+        paths = ["src/main/docker/jib"]
+        permissions = ["/entrypoint.sh": "755"]
+    }
+}

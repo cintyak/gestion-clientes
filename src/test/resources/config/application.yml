@@ -1,0 +1,67 @@
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+spring:
+  application:
+    name: GpgwMsAccount
+  jackson:
+    serialization:
+      write-durations-as-timestamps: false
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:mem:basesfl;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    name:
+    username:
+    password:
+    hikari:
+      auto-commit: false
+  jpa:
+    database-platform: bo.com.bisa.gpgw.msaccount.config.dbplatform.FixedH2Dialect
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    properties:
+      hibernate.enable_lazy_load_no_trans: true
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+      hibernate.hbm2ddl.auto: validate
+      hibernate.jdbc.time_zone: UTC
+      hibernate.query.fail_on_pagination_over_collection_fetch: true
+  liquibase:
+    contexts: test, faker
+  main:
+    allow-bean-definition-overriding: true
+  messages:
+    basename: i18n/messages
+  task:
+    execution:
+      thread-name-prefix: ${spring.application.name}-task-
+      pool:
+        core-size: 1
+        max-size: 50
+        queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: ${spring.application.name}-scheduling-
+      pool:
+        size: 1
+  thymeleaf:
+    mode: HTML
+
+server:
+  port: 10344
+  address: localhost
+
+coreprop:
+  security:
+    authentication:
+      jwt:
+        base64-secret: VU6BISLlTf/xJs7ng2V12k5ahmM7Iob/722bGFw0HN5hfiEJ96uu86lKnJYlzsfLruf/UrSTt83f9X3Imk4QoA==
+        token-validity-in-seconds: 86400
+
+# application:

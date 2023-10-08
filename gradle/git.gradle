@@ -1,0 +1,14 @@
+gitProperties {
+    dateFormatTimeZone = "GMT-4"
+    failOnNoGitDirectory = false
+    keys = [
+        "git.branch",
+        "git.commit.id.abbrev",
+        "git.commit.id",
+        "git.commit.time"
+    ]
+    customProperty 'app.version', { version + "-" + it.head().id.substring(0, 7) }
+//    processResources {
+//        inputs.property('version', version + "-" + it.head().id.substring(0, 7))
+//    }
+}

@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5432/genesis-pgw
+    username: postgres
+    password: postgres
+    hikari:
+      auto-commit: false
+  jpa:
+    database-platform: bo.com.bisa.gpgw.msaccount.config.dbplatform.FixedPostgreSQL10Dialect
